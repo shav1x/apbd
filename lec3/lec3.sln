@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lec3", "lec3\lec3.csproj", "{9B84E313-024E-4402-BE55-D0A8FC14F66B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B84E313-024E-4402-BE55-D0A8FC14F66B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B84E313-024E-4402-BE55-D0A8FC14F66B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B84E313-024E-4402-BE55-D0A8FC14F66B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B84E313-024E-4402-BE55-D0A8FC14F66B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
