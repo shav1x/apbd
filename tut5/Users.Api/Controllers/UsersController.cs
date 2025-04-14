@@ -14,7 +14,7 @@ public class UsersController : ControllerBase
 
     #region CRUD
 
-    // Get all users (GET api/users)
+    // Get all users (GET api/users?orderby=)
     [HttpGet]
     public IActionResult GetAll([FromQuery] string orderBy = "name_asc")
     {
@@ -73,7 +73,7 @@ public class UsersController : ControllerBase
     #region CRUD - Subresource
 
     // Get all orders for the provided user
-    [HttpGet("{userId:}/orders")]
+    [HttpGet("{userId:int}/orders")]
     public IActionResult GetAllUserOrders(int userId)
     {
         var orders = _orders.Where(x => x.UserId == userId).ToList();
@@ -82,7 +82,7 @@ public class UsersController : ControllerBase
 
     // Get specific order for the provided user
     [HttpGet("{userId:int}/orders/{orderId:int}")]
-    public IActionResult GetAllUserOrders(int userId, int orderId)
+    public IActionResult GetUserOrder(int userId, int orderId)
     {
         var order = _orders.FirstOrDefault(x => x.UserId == userId && x.Id == orderId);
         if (order is null)
