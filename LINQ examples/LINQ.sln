@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQ", "LINQ\LINQ.csproj", "{95830A8F-E23C-4BC5-B3CA-3AAF971433A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQ.Data", "LINQ.Data\LINQ.Data.csproj", "{EC9207F2-E8A6-4F87-9ECB-D46FE742A503}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95830A8F-E23C-4BC5-B3CA-3AAF971433A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95830A8F-E23C-4BC5-B3CA-3AAF971433A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95830A8F-E23C-4BC5-B3CA-3AAF971433A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95830A8F-E23C-4BC5-B3CA-3AAF971433A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC9207F2-E8A6-4F87-9ECB-D46FE742A503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC9207F2-E8A6-4F87-9ECB-D46FE742A503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC9207F2-E8A6-4F87-9ECB-D46FE742A503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC9207F2-E8A6-4F87-9ECB-D46FE742A503}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
