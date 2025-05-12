@@ -56,7 +56,7 @@ public class OrderRepository : IOrderRepository
         
         if (result == null || result == DBNull.Value)
         {
-            return -1;
+            throw new InvalidOperationException("Order ID could not be determined because no matching order was found.");
         }
 
         return Convert.ToInt32(result);
