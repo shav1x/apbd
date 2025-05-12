@@ -1,5 +1,4 @@
-using tut8.Infrastructure.Repositories;
-using tut8.Infrastructure.Repositories.Abstractions;
+using tut8.Services.Abstractions;
 
 namespace tut8.Services.Extensions;
 
@@ -7,7 +6,7 @@ public static class ServicesCollectionExtension
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IProductWarehouseService, ProductWarehouseService>();
         
         return services;
     }
