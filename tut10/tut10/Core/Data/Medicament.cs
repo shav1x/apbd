@@ -1,4 +1,4 @@
-namespace tut10.Data;
+namespace tut10.Core.Data;
 
 public class Medicament
 {

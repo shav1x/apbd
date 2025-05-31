@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using tut10.Data;
+using tut10.Core.Data;
 
-namespace tut10.Database;
+namespace tut10.Core.Database;
 
 public class PharmacyDbContext : DbContext
 {
