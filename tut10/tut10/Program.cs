@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using tut10.Database;
+using tut10.Application;
+using tut10.Core.Database;
 
 namespace tut10;
 
@@ -12,6 +13,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.RegisterApplicationServices();
         
         //
         var conString = builder.Configuration.GetConnectionString("Postgres");

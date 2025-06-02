@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using tut10.Database;
+using tut10.Core.Database;
 
 #nullable disable
 
@@ -22,7 +22,7 @@ namespace tut10.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("tut10.Data.Doctor", b =>
+            modelBuilder.Entity("tut10.Core.Data.Doctor", b =>
                 {
                     b.Property<int>("IdDoctor")
                         .ValueGeneratedOnAdd()
@@ -45,9 +45,25 @@ namespace tut10.Migrations
                     b.HasKey("IdDoctor");
 
                     b.ToTable("Doctors");
+
+                    b.HasData(
+                        new
+                        {
+                            IdDoctor = 1,
+                            Email = "house@example.com",
+                            FirstName = "Gregory",
+                            LastName = "House"
+                        },
+                        new
+                        {
+                            IdDoctor = 2,
+                            Email = "grey@example.com",
+                            FirstName = "Meredith",
+                            LastName = "Grey"
+                        });
                 });
 
-            modelBuilder.Entity("tut10.Data.Medicament", b =>
+            modelBuilder.Entity("tut10.Core.Data.Medicament", b =>
                 {
                     b.Property<int>("IdMedicament")
                         .ValueGeneratedOnAdd()
@@ -70,9 +86,25 @@ namespace tut10.Migrations
                     b.HasKey("IdMedicament");
 
                     b.ToTable("Medicaments");
+
+                    b.HasData(
+                        new
+                        {
+                            IdMedicament = 1,
+                            Description = "Pain reliever",
+                            Name = "Ibuprofen",
+                            Type = "Tablet"
+                        },
+                        new
+                        {
+                            IdMedicament = 2,
+                            Description = "Antibiotic",
+                            Name = "Amoxicillin",
+                            Type = "Capsule"
+                        });
                 });
 
-            modelBuilder.Entity("tut10.Data.Patient", b =>
+            modelBuilder.Entity("tut10.Core.Data.Patient", b =>
                 {
                     b.Property<int>("IdPatient")
                         .ValueGeneratedOnAdd()
@@ -94,9 +126,25 @@ namespace tut10.Migrations
                     b.HasKey("IdPatient");
 
                     b.ToTable("Patients");
+
+                    b.HasData(
+                        new
+                        {
+                            IdPatient = 1,
+                            Birthdate = new DateTime(1990, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "John",
+                            LastName = "Doe"
+                        },
+                        new
+                        {
+                            IdPatient = 2,
+                            Birthdate = new DateTime(1985, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Alice",
+                            LastName = "Smith"
+                        });
                 });
 
-            modelBuilder.Entity("tut10.Data.Prescription", b =>
+            modelBuilder.Entity("tut10.Core.Data.Prescription", b =>
                 {
                     b.Property<int>("IdPrescription")
                         .ValueGeneratedOnAdd()
@@ -123,9 +171,27 @@ namespace tut10.Migrations
                     b.HasIndex("IdPatient");
 
                     b.ToTable("Prescriptions");
+
+                    b.HasData(
+                        new
+                        {
+                            IdPrescription = 1,
+                            Date = new DateTime(2025, 6, 2, 15, 3, 14, 426, DateTimeKind.Local).AddTicks(540),
+                            DueDate = new DateTime(2025, 6, 9, 15, 3, 14, 426, DateTimeKind.Local).AddTicks(580),
+                            IdDoctor = 1,
+                            IdPatient = 1
+                        },
+                        new
+                        {
+                            IdPrescription = 2,
+                            Date = new DateTime(2025, 6, 2, 15, 3, 14, 426, DateTimeKind.Local).AddTicks(650),
+                            DueDate = new DateTime(2025, 6, 12, 15, 3, 14, 426, DateTimeKind.Local).AddTicks(650),
+                            IdDoctor = 2,
+                            IdPatient = 2
+                        });
                 });
 
-            modelBuilder.Entity("tut10.Data.PrescriptionMedicament", b =>
+            modelBuilder.Entity("tut10.Core.Data.PrescriptionMedicament", b =>
                 {
                     b.Property<int>("IdMedicament")
                         .HasColumnType("int");
@@ -145,32 +211,48 @@ namespace tut10.Migrations
                     b.HasIndex("IdPrescription");
 
                     b.ToTable("PrescriptionMedicaments");
+
+                    b.HasData(
+                        new
+                        {
+                            IdMedicament = 1,
+                            IdPrescription = 1,
+                            Details = "Take twice daily",
+                            Dose = 2
+                        },
+                        new
+                        {
+                            IdMedicament = 2,
+                            IdPrescription = 2,
+                            Details = "Take once daily",
+                            Dose = 1
+                        });
                 });
 
-            modelBuilder.Entity("tut10.Data.Prescription", b =>
+            modelBuilder.Entity("tut10.Core.Data.Prescription", b =>
                 {
-                    b.HasOne("tut10.Data.Doctor", null)
+                    b.HasOne("tut10.Core.Data.Doctor", null)
                         .WithMany()
                         .HasForeignKey("IdDoctor")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("tut10.Data.Patient", null)
+                    b.HasOne("tut10.Core.Data.Patient", null)
                         .WithMany()
                         .HasForeignKey("IdPatient")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("tut10.Data.PrescriptionMedicament", b =>
+            modelBuilder.Entity("tut10.Core.Data.PrescriptionMedicament", b =>
                 {
-                    b.HasOne("tut10.Data.Medicament", null)
+                    b.HasOne("tut10.Core.Data.Medicament", null)
                         .WithMany()
                         .HasForeignKey("IdMedicament")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("tut10.Data.Prescription", null)
+                    b.HasOne("tut10.Core.Data.Prescription", null)
                         .WithMany()
                         .HasForeignKey("IdPrescription")
                         .OnDelete(DeleteBehavior.Cascade)

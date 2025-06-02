@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using tut10.Application.DTOs;
 using tut10.Application.Exceptions;
-using tut10.Application.Repositories;
+using tut10.Application.Repositories.Interfaces;
 using tut10.Core.Data;
 using tut10.Core.Database;
 
-namespace tut10.Infrastructure.Repositories;
+namespace tut10.Application.Repositories;
 
 public class PrescriptionRepository : IPrescriptionRepository
 {
@@ -44,7 +44,7 @@ public class PrescriptionRepository : IPrescriptionRepository
         return medications is not null;
     }
 
-    public async Task<Prescription> CreatePrescriptionAsync(PrescriptionDto prescriptionDto, int doctorId)
+    public async Task<bool> CreatePrescriptionAsync(PrescriptionDto prescriptionDto, int doctorId)
     {
         if (prescriptionDto.DueDate < prescriptionDto.Date)
         {
@@ -75,6 +75,7 @@ public class PrescriptionRepository : IPrescriptionRepository
                 LastName = prescriptionDto.LastName,
                 Birthdate = prescriptionDto.Birthdate
             });
+            _dbContext.Patients.Add(patient);
         }
         
         var newPrescription = new Prescription
@@ -102,6 +103,6 @@ public class PrescriptionRepository : IPrescriptionRepository
         }
 
         await _dbContext.SaveChangesAsync();
-        return newPrescription;
+        return true;
     }
 }

@@ -56,5 +56,32 @@ public class PharmacyDbContext : DbContext
             .WithMany()
             .HasForeignKey(x => x.IdPrescription)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<Patient>().HasData(
+            new Patient { IdPatient = 1, FirstName = "John", LastName = "Doe", Birthdate = new DateTime(1990, 5, 12) },
+            new Patient { IdPatient = 2, FirstName = "Alice", LastName = "Smith", Birthdate = new DateTime(1985, 3, 28) }
+        );
+        
+        modelBuilder.Entity<Doctor>().HasData(
+            new Doctor { IdDoctor = 1, FirstName = "Gregory", LastName = "House", Email = "house@example.com" },
+            new Doctor { IdDoctor = 2, FirstName = "Meredith", LastName = "Grey", Email = "grey@example.com" }
+        );
+        
+        modelBuilder.Entity<Medicament>().HasData(
+            new Medicament { IdMedicament = 1, Name = "Ibuprofen", Description = "Pain reliever", Type = "Tablet" },
+            new Medicament { IdMedicament = 2, Name = "Amoxicillin", Description = "Antibiotic", Type = "Capsule" }
+        );
+        
+        modelBuilder.Entity<Prescription>().HasData(
+            new Prescription { IdPrescription = 1, Date = DateTime.Now, DueDate = DateTime.Now.AddDays(7), IdPatient = 1, IdDoctor = 1 },
+            new Prescription { IdPrescription = 2, Date = DateTime.Now, DueDate = DateTime.Now.AddDays(10), IdPatient = 2, IdDoctor = 2 }
+        );
+        
+        modelBuilder.Entity<PrescriptionMedicament>().HasData(
+            new PrescriptionMedicament { IdPrescription = 1, IdMedicament = 1, Dose = 2, Details = "Take twice daily" },
+            new PrescriptionMedicament { IdPrescription = 2, IdMedicament = 2, Dose = 1, Details = "Take once daily" }
+        );
     }
 }
